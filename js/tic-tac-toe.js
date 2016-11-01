@@ -1,19 +1,34 @@
 $(document).ready(function () {
-  var times = 0;
+  var counter = 0;
+  var square_value = "";
+  // $(".square").on("click", function () {
+  //   // debugger
+  //   // if (square_value === 'O') {
+  //   //
+  //   // } else {
+  //     if (counter === 0) {
+  //       $(this).text("O");
+  //       counter = 1;
+  //       console.log("counter var = " + counter);
+  //     } else if (counter === 1) {
+  //       $(this).text("X");
+  //       counter = 2;
+  //       console.log("counter var in else if = " + counter);
+  //     } else {
+  //       $(this).text("");
+  //       counter = 0;
+  //       console.log(("counter var in else = " + counter));
+  //     }
+  //     square_value = $(this).text();
+  //     console.log("Square value is " + square_value);
+  //   // }
+  // });
+
   $(".square").on("click", function () {
-    // debugger
-    if (times === 0) {
+    square_value = $(this).text();
+    console.log("Square value is " + square_value);
+    if (square_value === "") {
       $(this).text("O");
-      times = 1;
-      console.log("Times var = " + times);
-    } else if (times === 1) {
-      $(this).text("X");
-      times = 2;
-      console.log("Times var in else if = " + times);
-    } else {
-      $(this).text("");
-      times = 0;
-      console.log(("Times var in else = " + times));
     }
   });
 });
