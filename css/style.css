@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+
+table, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 5px;
+  margin: auto;
+  margin-top: 100px;
+}
+
+td {
+  padding: 20px;
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  font-size: 100px;
+}
