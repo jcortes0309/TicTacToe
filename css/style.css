@@ -33,7 +33,7 @@ h1 {
   font-size: 16px;
 }
 
-table, td {
+table, td, th {
   border: 1px solid black;
   border-collapse: collapse;
   border-spacing: 5px;
@@ -46,7 +46,24 @@ td {
 }
 
 .square {
-  width: 150px;
-  height: 150px;
-  font-size: 100px;
+  width: 100px;
+  height: 100px;
+  font-size: 75px;
+  border: none;
+  background-color: white;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.empty_row {
+  border-left: none;
+}
+
+.x_wins,
+.o_wins,
+.draw,
+.player {
+  text-align: center;
 }
