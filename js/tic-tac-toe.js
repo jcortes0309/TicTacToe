@@ -1,15 +1,16 @@
 $(document).ready(function () {
   var counter = 0;
   var square_value = "";
-  var board = [];
+  var board = ["", "", "", "", "", "", "", "", ""];
   var counter_x = 0;
   var counter_o = 0;
   var counter_draw = 0;
   var turns = 0;
+  var random_location;
 
   $(".play_again").on("click", function () {
     $(this).hide();
-    board = [];
+    board = ["", "", "", "", "", "", "", "", ""];
     $(".square")
       .prop("disabled", false)
       .text("")
@@ -19,6 +20,7 @@ $(document).ready(function () {
   });
 
   $(".square").on("click", function () {
+    random_location = getRandomIntInclusive();
     square_value = $(this).text();
     if (square_value === "") {
       if (counter === 0) {
@@ -28,13 +30,13 @@ $(document).ready(function () {
           .css("color", "white");
         counter = 1;
         console.log("counter var = " + counter);
-      } else if (counter === 1) {
-        $(this)
-          .text("X")
-          .css("background-color", "navy")
-          .css("color", "white");
-        counter = 0;
+        console.log(board);
+        console.log(random_location);
+        console.log(board[random_location]);
+        debugger
+        counter = ai_turn(counter);
       }
+
       var button_name = $(this).attr('name');
       console.log("Button name is: " + button_name);
       var button_value = $(this).text();
@@ -58,7 +60,6 @@ $(document).ready(function () {
       } else {
         console.log("Keep playing");
         console.log(board);
-        console.log("Board length is: " + board.length);
       }
       turns = turns + 1;
       console.log("Turns = " + turns);
@@ -73,6 +74,30 @@ $(document).ready(function () {
       }
     }
   });
+
+  // Returns a random integer between min (included) and max (included)
+// Using Math.round() will give you a non-uniform distribution!
+  function getRandomIntInclusive() {
+    min = Math.ceil(0);
+    max = Math.floor(8);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  function ai_turn(counter) {
+    while (board[random_location] !== "") {
+      console.log(board[random_location]);
+      random_location = getRandomIntInclusive();
+    }
+
+    $("[name='random_location']")
+      .text("X")
+      .css("background-color", "navy")
+      .css("color", "white");
+
+    console.log("Random location is: " + random_location);
+    counter = 0;
+    return counter;
+  }
 
   function push_to_board(name, value) {
     var location = Number(name);
@@ -109,13 +134,11 @@ $(document).ready(function () {
   function tictactoe(board) {
     if (isWinner(board, 'X')) {
       counter_x = counter_x + 1;
-      console.log("XXXXXX wins! YAY!");
       $(".x_wins").text(counter_x);
       console.log(counter_x);
       return 'X';
     } else if (isWinner(board, 'O')) {
       counter_o = counter_o + 1;
-      console.log("OOOOOO wins! YAY!");
     $(".o_wins").text(counter_o);
       console.log(counter_o);
       return 'O';
